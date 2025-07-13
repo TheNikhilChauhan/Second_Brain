@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./config/db";
 import dotenv from "dotenv";
 import authRoutes from "./routes/user.route";
+import contentRoutes from "./routes/content.route";
 
 dotenv.config();
 const app = express();
@@ -11,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT;
 
-app.use("/api/v1", authRoutes);
+app.use("/api/v1", authRoutes, contentRoutes);
 
 app.listen(PORT, async () => {
   await connectDB();
